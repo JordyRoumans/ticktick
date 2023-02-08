@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TickTick.Models.Dtos;
 
 namespace TickTick.Models
 {
@@ -25,6 +26,19 @@ namespace TickTick.Models
             this.FirstName= firstname;
             this.LastName= lastname;
             this.Email= email;
+        }
+
+        public PersonDto ConvertToDto()
+        {
+            return new PersonDto()
+            {
+                PublicId = this.PublicId,
+                FirstName = this.FirstName,
+                Lastname = this.LastName,
+                Email = this.Email,
+                MiddleName = this.MiddleName,
+                DateOfBirth = this.DateOfBirth
+            };
         }
 
         public void Delete()
