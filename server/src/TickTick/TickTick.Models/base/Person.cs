@@ -27,6 +27,7 @@ namespace TickTick.Models
             this.LastName= lastname;
             this.Email= email;
         }
+        
 
         public PersonDto ConvertToDto()
         {

@@ -1,17 +1,45 @@
-var builder = WebApplication.CreateBuilder(args);
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+        // Add services to the container.
 
-builder.Services.AddControllers();
+        builder.Services.AddControllers();
 
-var app = builder.Build();
+        builder.Services.AddSwaggerGen(config => 
+        {
+            config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            {
+                Title = "TickTick.api",
+                Version = "v1",
+                Description = "Lorem ipsum",
+                Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                {
+                    Name = "Jordy Schuermans",
+                    Email= "jordy.schuermans@assign.be"
+                }
+            });
+        });
 
-// Configure the HTTP request pipeline.
+        var app = builder.Build();
 
-app.UseHttpsRedirection();
+        // Configure the HTTP request pipeline.
 
-app.UseAuthorization();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        
 
-app.MapControllers();
+        app.UseHttpsRedirection();
 
-app.Run();
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
+}

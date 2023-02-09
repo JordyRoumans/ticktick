@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TickTick.Models.Dtos;
 
 namespace TickTick.Models
 {
@@ -42,6 +43,19 @@ namespace TickTick.Models
         public override string ToString()
         {
             return $"{this.Street} {this.Nr}, {this.City}";
+        }
+
+        public LocationDto ConvertToDto()
+        {
+            return new LocationDto()
+            {
+                Street = this.Street,
+                Nr = this.Nr,
+                City = this.City,
+                ZipCode = this.ZipCode,
+                Country = this.Country,
+                Type = this.Type
+            };
         }
     }
 }
