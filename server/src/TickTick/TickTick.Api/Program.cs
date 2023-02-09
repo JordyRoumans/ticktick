@@ -1,3 +1,5 @@
+using TickTick.Api;
+
 internal class Program
 {
     private static void Main(string[] args)
@@ -22,6 +24,14 @@ internal class Program
                 }
             });
         });
+
+        builder.Services.AddApiVersioning(config => 
+        {
+            config.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+            config.AssumeDefaultVersionWhenUnspecified = true;
+        });
+
+        builder.Services.RegisterServices();
 
         var app = builder.Build();
 
